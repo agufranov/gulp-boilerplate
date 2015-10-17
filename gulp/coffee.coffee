@@ -4,7 +4,6 @@ coffee = require 'gulp-coffee'
 sourcemaps = require 'gulp-sourcemaps'
 plumber = require 'gulp-plumber'
 notify = require 'gulp-notify'
-lazypipe = require 'lazypipe'
 path = require 'path'
 
 module.exports = (opts) ->
@@ -18,17 +17,16 @@ module.exports = (opts) ->
 
   coffeeGlob = path.join opts.paths.src, '**', '*.coffee'
 
-  coffeeCompile = lazypipe()
-    .pipe sourcemaps.init
-    .pipe(plumber, errorHandler: onError)
-    .pipe coffee, bare: true
-    .pipe sourcemaps.write
-    .pipe gulp.dest, opts.browserify.path
+  pipeToCoffee = (p) ->
+    p
+      .pipe plumber errorHandler: onError
+      .pipe sourcemaps.init()
+      .pipe coffee bare: true
+      .pipe sourcemaps.write()
+      .pipe gulp.dest opts.browserify.path
 
   gulp.task 'coffee:compile', ->
-    gulp.src coffeeGlob
-      .pipe coffeeCompile()
+    pipeToCoffee(gulp.src coffeeGlob)
 
   gulp.task 'coffee:watch', ['compile'], ->
-    watch coffeeGlob, verbose: true, name: 'Coffee'
-      .pipe coffeeCompile()
+    pipeToCoffee(watch coffeeGlob, verbose: true, name: 'Coffee')

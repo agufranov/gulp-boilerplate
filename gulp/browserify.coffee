@@ -5,7 +5,6 @@ browserify = require 'browserify'
 source = require 'vinyl-source-stream'
 buffer = require 'vinyl-buffer'
 uglify = require 'gulp-uglify'
-lazypipe = require 'lazypipe'
 path = require 'path'
 
 module.exports = (opts) ->
