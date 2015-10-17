@@ -14,7 +14,7 @@ module.exports = (opts) ->
     gulp.src jadeGlob
       .pipe jadeCompile()
 
-  gulp.task 'jade:watch', ->
+  gulp.task 'jade:watch', ['compile'], ->
     watch jadeGlob, verbose: true, name: 'Jade'
       .pipe jadeCompile()
 

@@ -17,6 +17,6 @@ module.exports = (opts) ->
     gulp.src coffeeGlob
       .pipe coffeeCompile()
 
-  gulp.task 'coffee:watch', ->
+  gulp.task 'coffee:watch', ['compile'], ->
     watch coffeeGlob, verbose: true, name: 'Coffee'
       .pipe coffeeCompile()
