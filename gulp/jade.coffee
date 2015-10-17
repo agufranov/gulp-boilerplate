@@ -4,11 +4,11 @@ jade = require 'gulp-jade'
 lazypipe = require 'lazypipe'
 path = require 'path'
 
-module.exports = ({ srcDir, destDir }) ->
-  jadeGlob = path.join srcDir, '**', '*.jade'
+module.exports = (opts) ->
+  jadeGlob = path.join opts.paths.src, '**', '*.jade'
   jadeCompile = lazypipe()
     .pipe jade
-    .pipe gulp.dest, destDir
+    .pipe gulp.dest, opts.paths.build
 
   gulp.task 'jade:compile', ->
     gulp.src jadeGlob

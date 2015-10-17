@@ -5,13 +5,13 @@ sourcemaps = require 'gulp-sourcemaps'
 lazypipe = require 'lazypipe'
 path = require 'path'
 
-module.exports = ({ srcDir, destDir }) ->
-  coffeeGlob = path.join srcDir, '**', '*.coffee'
+module.exports = (opts) ->
+  coffeeGlob = path.join opts.paths.src, '**', '*.coffee'
   coffeeCompile = lazypipe()
     .pipe sourcemaps.init
     .pipe coffee, bare: true
     .pipe sourcemaps.write
-    .pipe gulp.dest, destDir
+    .pipe gulp.dest, opts.browserify.path
 
   gulp.task 'coffee:compile', ->
     gulp.src coffeeGlob

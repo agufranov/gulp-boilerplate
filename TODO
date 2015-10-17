@@ -1,0 +1,19 @@
+1. Run watch after compile (because browserify:watch may fire on coffee:compile)
+
+  Actual:
+
+  compile------
+               browser-sync-----
+     watch----------------------
+
+  Expected:
+
+  compile-----
+              browser-sync-----
+              watch------------
+
+2. Cleanup
+
+3. Error handling
+
+4. Vim saves twice - why? even with set nowritebackup

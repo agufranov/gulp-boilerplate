@@ -3,12 +3,12 @@ watch = require 'gulp-watch'
 path = require 'path'
 browserSync = require('browser-sync').create()
 
-module.exports = ({ baseDir }) ->
+module.exports = (opts) ->
   gulp.task 'browser-sync:serve', ['compile'], ->
     browserSync.init
       server:
-        baseDir: baseDir
+        baseDir: opts.paths.build
 
   gulp.task 'browser-sync:watch', ['browser-sync:serve'], ->
-    watch path.join baseDir, '**', '*.*'
+    watch path.join opts.paths.build, '**', '*.*'
       .pipe browserSync.reload stream: true
