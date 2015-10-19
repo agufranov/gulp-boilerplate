@@ -7,9 +7,11 @@ path = require 'path'
 
 module.exports = (opts) ->
   onError = (err) ->
-    console.log err
+    filename = path.relative process.cwd(), err.path
+    at = err.message.match(/:([\w]+)/)[1]
     notify.onError(
-      title: 'A'
+      title: 'Jade error'
+      message: "#{filename}:#{at}"
     )(err)
 
   jadeGlob = path.join opts.paths.src, '**', '*.jade'
