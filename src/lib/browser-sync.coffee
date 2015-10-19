@@ -4,7 +4,7 @@ path = require 'path'
 browserSync = require('browser-sync').create()
 
 module.exports = (opts) ->
-  gulp.task 'browser-sync:serve', ['compile'], ->
+  gulp.task 'browser-sync:serve', ['build'], ->
     browserSync.init
       server:
         baseDir: opts.paths.build

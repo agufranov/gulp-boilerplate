@@ -19,16 +19,17 @@
   [DONE for Jade]
   [FIXED] ISSUE: If very first CoffeeScript watch encounters an error, it breaks pipe.
   [FIXED] ISSUE: Jade plumber needs to be places in different place (watch -> plumber -> lazypipe),
-  and also throws out the very first error, but doesn't break
+    and also throws out the very first error, but doesn't break
 
 4. Vim saves twice - why? even with set nowritebackup
 
 5. Test with initially non-existing folders
 
-6. Think how to make it submoduleable
+6. [DONE - npm package]
+  Think how to make it submoduleable
 
-7. Lib files copying to dest
+7. [DONE] Lib files copying to dest
 
 8. Coffee watch must start after coffee compile, not after all compile (to prevent missing changes)
 
-9. Error messages
+9. Error messages [DONE]

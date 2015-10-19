@@ -7,8 +7,9 @@ module.exports = (settings) ->
   require('./lib/browserify') settings
   require('./lib/jade') settings
   require('./lib/cleanup') settings
+  require('./lib/copy') settings
 
   gulp.task 'default', ['browser-sync:watch', 'watch']
 
-  gulp.task 'compile', ['browserify:compile', 'jade:compile']
+  gulp.task 'build', ['browserify:compile', 'jade:compile', 'copy-lib']
   gulp.task 'watch', ['coffee:watch', 'browserify:watch', 'jade:watch']

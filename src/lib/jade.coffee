@@ -25,6 +25,6 @@ module.exports = (opts) ->
   gulp.task 'jade:compile', ->
     pipeToJade(gulp.src jadeGlob)
 
-  gulp.task 'jade:watch', ['compile'], ->
+  gulp.task 'jade:watch', ['build'], ->
     pipeToJade(watch jadeGlob, verbose: true, name: 'Jade')
 

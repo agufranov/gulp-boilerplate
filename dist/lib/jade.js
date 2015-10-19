@@ -32,7 +32,7 @@ module.exports = function(opts) {
   gulp.task('jade:compile', function() {
     return pipeToJade(gulp.src(jadeGlob));
   });
-  return gulp.task('jade:watch', ['compile'], function() {
+  return gulp.task('jade:watch', ['build'], function() {
     return pipeToJade(watch(jadeGlob, {
       verbose: true,
       name: 'Jade'
