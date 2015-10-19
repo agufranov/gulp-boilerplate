@@ -28,5 +28,5 @@ module.exports = (opts) ->
   gulp.task 'coffee:compile', ->
     pipeToCoffee(gulp.src coffeeGlob)
 
-  gulp.task 'coffee:watch', ['build'], ->
+  gulp.task 'coffee:watch', ['coffee:compile'], ->
     pipeToCoffee(watch coffeeGlob, verbose: true, name: 'Coffee')
