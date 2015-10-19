@@ -1,14 +1,5 @@
 gulp = require 'gulp'
 
-# settings =
-#   paths:
-#     src: './src'
-#     build: './build'
-#   browserify:
-#     path: './.browserify'
-#     entries: ['js/app.js']
-#     bundleName: 'all.js'
-
 module.exports = (settings) ->
 
   require('./lib/browser-sync') settings

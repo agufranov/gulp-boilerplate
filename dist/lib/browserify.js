@@ -1,43 +1,40 @@
-(function() {
-  var browserify, buffer, gulp, path, source, sourcemaps, uglify, watch;
+var browserify, buffer, gulp, path, source, sourcemaps, uglify, watch;
 
-  gulp = require('gulp');
+gulp = require('gulp');
 
-  watch = require('gulp-watch');
+watch = require('gulp-watch');
 
-  sourcemaps = require('gulp-sourcemaps');
+sourcemaps = require('gulp-sourcemaps');
 
-  browserify = require('browserify');
+browserify = require('browserify');
 
-  source = require('vinyl-source-stream');
+source = require('vinyl-source-stream');
 
-  buffer = require('vinyl-buffer');
+buffer = require('vinyl-buffer');
 
-  uglify = require('gulp-uglify');
+uglify = require('gulp-uglify');
 
-  path = require('path');
+path = require('path');
 
-  module.exports = function(opts) {
-    var entries, makeBundle, watchGlob;
-    watchGlob = path.join(opts.browserify.path, '**', '*.js');
-    entries = opts.browserify.entries.map(function(p) {
-      return path.join(opts.browserify.path, p);
-    });
-    makeBundle = function() {
-      return browserify({
-        entries: entries,
-        debug: true
-      }).bundle().pipe(source(opts.browserify.bundleName)).pipe(buffer()).pipe(sourcemaps.init({
-        loadMaps: true
-      })).pipe(uglify()).pipe(sourcemaps.write()).pipe(gulp.dest(opts.paths.build));
-    };
-    gulp.task('browserify:compile', ['coffee:compile'], makeBundle);
-    return gulp.task('browserify:watch', ['compile'], function() {
-      return watch(watchGlob, {
-        verbose: true,
-        name: 'Browserify'
-      }, makeBundle);
-    });
+module.exports = function(opts) {
+  var entries, makeBundle, watchGlob;
+  watchGlob = path.join(opts.browserify.path, '**', '*.js');
+  entries = opts.browserify.entries.map(function(p) {
+    return path.join(opts.browserify.path, p);
+  });
+  makeBundle = function() {
+    return browserify({
+      entries: entries,
+      debug: true
+    }).bundle().pipe(source(opts.browserify.bundleName)).pipe(buffer()).pipe(sourcemaps.init({
+      loadMaps: true
+    })).pipe(uglify()).pipe(sourcemaps.write()).pipe(gulp.dest(opts.paths.build));
   };
-
-}).call(this);
+  gulp.task('browserify:compile', ['coffee:compile'], makeBundle);
+  return gulp.task('browserify:watch', ['compile'], function() {
+    return watch(watchGlob, {
+      verbose: true,
+      name: 'Browserify'
+    }, makeBundle);
+  });
+};

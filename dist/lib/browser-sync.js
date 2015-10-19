@@ -1,27 +1,24 @@
-(function() {
-  var browserSync, gulp, path, watch;
+var browserSync, gulp, path, watch;
 
-  gulp = require('gulp');
+gulp = require('gulp');
 
-  watch = require('gulp-watch');
+watch = require('gulp-watch');
 
-  path = require('path');
+path = require('path');
 
-  browserSync = require('browser-sync').create();
+browserSync = require('browser-sync').create();
 
-  module.exports = function(opts) {
-    gulp.task('browser-sync:serve', ['compile'], function() {
-      return browserSync.init({
-        server: {
-          baseDir: opts.paths.build
-        }
-      });
+module.exports = function(opts) {
+  gulp.task('browser-sync:serve', ['compile'], function() {
+    return browserSync.init({
+      server: {
+        baseDir: opts.paths.build
+      }
     });
-    return gulp.task('browser-sync:watch', ['browser-sync:serve'], function() {
-      return watch(path.join(opts.paths.build, '**', '*.*')).pipe(browserSync.reload({
-        stream: true
-      }));
-    });
-  };
-
-}).call(this);
+  });
+  return gulp.task('browser-sync:watch', ['browser-sync:serve'], function() {
+    return watch(path.join(opts.paths.build, '**', '*.*')).pipe(browserSync.reload({
+      stream: true
+    }));
+  });
+};
