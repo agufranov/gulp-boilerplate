@@ -36,7 +36,7 @@ module.exports = function(opts) {
   gulp.task('coffee:compile', function() {
     return pipeToCoffee(gulp.src(coffeeGlob));
   });
-  return gulp.task('coffee:watch', ['compile'], function() {
+  return gulp.task('coffee:watch', ['coffee:compile'], function() {
     return pipeToCoffee(watch(coffeeGlob, {
       verbose: true,
       name: 'Coffee'

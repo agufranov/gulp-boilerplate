@@ -2,7 +2,8 @@ var gulp = require('../index.js');
 settings = {
   paths: {
     src: './src',
-    build: './dist'
+    build: './dist',
+    lib: './lib'
   },
   browserify: {
     path: './.bfy',

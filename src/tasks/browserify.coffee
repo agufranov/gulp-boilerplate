@@ -25,5 +25,5 @@ module.exports = (opts) ->
 
   gulp.task 'browserify:compile', ['coffee:compile'], makeBundle
 
-  gulp.task 'browserify:watch', ['compile'], ->
+  gulp.task 'browserify:watch', ['browserify:compile'], ->
     watch watchGlob, verbose: true, name: 'Browserify', makeBundle

@@ -31,7 +31,7 @@ module.exports = function(opts) {
     })).pipe(uglify()).pipe(sourcemaps.write()).pipe(gulp.dest(opts.paths.build));
   };
   gulp.task('browserify:compile', ['coffee:compile'], makeBundle);
-  return gulp.task('browserify:watch', ['compile'], function() {
+  return gulp.task('browserify:watch', ['browserify:compile'], function() {
     return watch(watchGlob, {
       verbose: true,
       name: 'Browserify'
