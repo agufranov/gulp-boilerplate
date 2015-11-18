@@ -3,7 +3,7 @@ settings = {
   paths: {
     src: './src',
     build: './dist',
-    lib: './lib'
+    lib: ['./lib', './img']
   },
   browserify: {
     path: './.bfy',

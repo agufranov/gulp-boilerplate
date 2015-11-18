@@ -1,6 +1,6 @@
 gulp = require 'gulp'
 watch = require 'gulp-watch'
-jade = require 'gulp-jade'
+stylus = require 'gulp-stylus'
 plumber = require 'gulp-plumber'
 notify = require 'gulp-notify'
 path = require 'path'
@@ -14,16 +14,16 @@ module.exports = (opts) ->
       message: "#{filename}:#{at}"
     )(err)
 
-  jadeGlob = path.join opts.paths.src, '**', '*.jade'
+  stylusGlob = path.join opts.paths.src, '**', '*.styl'
 
-  pipeToJade = (p) ->
+  pipeToStylus = (p) ->
     p
       .pipe plumber errorHandler: onError
-      .pipe jade()
+      .pipe stylus()
       .pipe gulp.dest opts.paths.build
 
-  gulp.task 'jade:compile', ->
-    pipeToJade(gulp.src jadeGlob)
+  gulp.task 'stylus:compile', ->
+    pipeToStylus(gulp.src stylusGlob)
 
-  gulp.task 'jade:watch', ['jade:compile'], ->
-    pipeToJade(watch jadeGlob, verbose: true, name: 'Jade')
+  gulp.task 'stylus:watch', ['stylus:compile'], ->
+    pipeToStylus(watch stylusGlob, verbose: true, name: 'Stylus')
