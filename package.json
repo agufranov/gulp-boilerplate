@@ -1,6 +1,6 @@
 {
   "name": "gulp-boilerplate-agufranov",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "main": "index.js",
   "dependencies": {
     "browser-sync": "^2.9.11",
